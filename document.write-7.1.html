@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>document.write方法</title>
+</head>
+<body>
+	<div id="testdiv">
+	</div>
+	<script type="text/javascript">
+		// document.write('<p>This is inserted.</p>');
+		window.onload = function () {
+			var testdiv = document.getElementById('testdiv');
+			var para = document.createElement('p');
+			var txt = document.createTextNode('Hello world!');
+			testdiv.appendChild(para);
+			para.appendChild(txt);
+			// testdiv.innerHTML = '<p> I inserted <em>this</em> content. </p>';
+		}
+	</script>
+</body>
+</html>

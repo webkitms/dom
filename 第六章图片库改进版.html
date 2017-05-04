@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>image gallery 改进版</title>
+	<style type="text/css">
+		body {
+			font-family: 'Helvatica', 'Arial', serif;
+			color: #333;
+			background-color: #ccc;
+			margin: 1em 10%;
+		}
+		h1 {
+			color:#333;
+			background-color: transparent;
+		}
+		a {
+			color:#c60;
+			background-color: transparent;
+			font-weight: bold;
+			text-decoration: none;
+		}
+		ul {
+			padding: 0;
+		}
+		li {
+			float: left;
+			padding: 1em;
+			list-style: none;
+		}
+		#imagegallery {
+			width: 730px;
+			height: 150px;
+			list-style: none;
+		}
+		#imagegallery li {
+			display: inline;
+		}
+		#imagegallery li a img {
+			width:150px;
+			border: 0;
+		}
+	</style>
+</head>
+<body>
+	<h1>Snapshots</h1>
+	<ul id="imagegallery">
+		<li>
+			<a href="img/640.jpg" title="A DI1"><img src="img/640.jpg"></a>
+		</li>
+		<li>
+			<a href="img/6401.jpg" title="A DI2"><img src="img/6401.jpg"></a>
+		</li>
+		<li>
+			<a href="img/6402.jpg" title="A DI3"><img src="img/6402.jpg"></a>
+		</li>
+		<li>
+			<a href="img/6403.jpg" title="A DI4"><img src="img/6403.jpg"></a>
+		</li>
+		
+	</ul>
+</body>
+<script type="text/javascript">
+
+	// window.onload = countBodyChildren;
+
+	function showPic(whichpic) {
+		if (!document.getElementById('placeholder')) return false;
+		var source = whichpic.getAttribute('href');
+		var placeholder = document.getElementById('placeholder');
+		placeholder.setAttribute('src', source);
+		if (document.getElementById('description')) {
+			var text = whichpic.getAttribute('title');
+			var description = document.getElementById('description');
+			description.firstChild.nodeValue = text;
+		}
+		return true;
+	}
+
+	function countBodyChildren() {
+		var body_element = document.getElementsByTagName('body')[0];
+		alert(body_element.childNodes.length);
+	}
+
+	function prepareGallery() {
+		if (!document.getElementById) return false;
+		if (!document.getElementsByTagName) return false;
+		if (!document.getElementById('imagegallery')) return false;
+
+		var gallery = document.getElementById('imagegallery');
+		var links = gallery.getElementsByTagName('a');
+
+		for (var i = 0; i < links.length; i++) {
+			links[i].onclick = function () {
+				return !showPic(this);
+			}
+		}
+	}
+
+	function preparePlaceholder() {
+		if (!document.createElement) return false;
+		if (!document.createTextNode) return false;
+		if (!document.getElementById) return false;
+		if (!document.getElementById('imagegallery')) return false;
+		var placeholder = document.createElement('img');
+		placeholder.setAttribute('id','placeholder');
+		placeholder.setAttribute('src','img/replace.jpg');
+		placeholder.setAttribute('alt','my image gallery');
+		var description = document.createElement('p');
+		description.setAttribute('id','description');
+		var desctext = document.createTextNode('Choose an image');
+		description.appendChild(desctext);
+		document.getElementsByTagName('body')[0].appendChild(placeholder);
+		document.getElementsByTagName('body')[0].appendChild(description);
+
+		var gallery = document.getElementById('imagegallery');
+		insertAfter(placeholder,gallery);
+		insertAfter(description,placeholder);
+	}
+	function insertAfter(newElement, targetElement) {
+		var parent = targetElement.parentNode;
+		if (parent.lastChild == targetElement) {
+			parent.appendChild(newElement);
+		} else {
+			parent.insertBefore(newElement,targetElement.nextSibing);
+		}
+	}
+	addLoadEvent(prepareGallery);
+	addLoadEvent(preparePlaceholder);
+	//页面加载完毕，执行函数列队
+	function addLoadEvent(func) {
+		var oldonload = window.onload;
+		if (typeof window.onload != 'function') {
+			window.onload = func;
+		} else {
+			window.onload = function () {
+				oldonload();
+				func();
+			}
+		}
+	}
+</script>
+</html>

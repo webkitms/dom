@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>shopping list</title>
+	<style type="text/css">
+		body {
+			color: white;
+			background-color: black;
+		}
+		#purchases {
+			border: 1px solid white;
+			background-color: #333;
+			color: #ccc;
+			padding: 1em;
+		}
+		#purchases li {
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<h1>What to buy</h1>
+	<p title="a gentle reminder">Don't forget to buy this stuff.</p>
+	<p>This is just a test</p>
+	<ul id="purchases">
+		<li>A tin of beans</li>
+		<li class="sale">Cheese</li>
+		<li class="sale important">Milk</li>
+	</ul>
+</body>
+<script type="text/javascript">
+	// alert(typeof document.getElementById('purchases'));
+	// for (var i = 0; i < document.getElementsByTagName('li').length; i++) {
+	// 	alert(typeof document.getElementsByTagName('li')[i]);
+	// }
+	// alert(document.getElementsByTagName('li').length);
+
+	// function getElementsByClassName(node, classname) {
+	// 	if (node.getElementsByClassName) {
+	// 		return node.getElementsByClassName(classname);
+	// 	} else {
+	// 		var results = new Array();
+	// 		var elems = node.getElementsByTagName("*");
+	// 		for (var i = 0; i < elems.length; i++) {
+	// 			if (elems[i].className.indexOf(classname) != -1) {
+	// 				results[results.length] = elems[i];
+	// 			}
+	// 		}
+	// 		return results;
+	// 	}
+	// }
+
+	// var paras = document.getElementsByTagName('p');
+	// for (var i = 0; i < paras.length; i++) {
+	// 	var title_text = paras[i].getAttribute('title');
+	// 	if (title_text) {
+	// 		alert(title_text);
+	// 	}
+	// }
+
+	// var shopping = document.getElementById('purchases');
+	// alert(shopping.getAttribute('title'));
+	// shopping.setAttribute('title', 'a list of goods');
+	// alert(shopping.getAttribute('title'));
+
+	var paras = document.getElementsByTagName('p');
+	for (var i = 0; i < paras.length; i++) {
+		var title_text = paras[i].getAttribute('title');
+		if (title_text) {
+			paras[i].setAttribute('title', 'brand new title text');
+			alert(paras[i].getAttribute('title'));
+		}
+	}
+
+</script>
+<!-- 这份文档的模型为: 
+	html  ==>>	head    body
+	head  ==>>  meta 	title
+	body  ==>>  h1  p  ul
+	ul    ==>>  li  li li
+-->
+</html>

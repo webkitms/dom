@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>image gallery</title>
+	<style type="text/css">
+		body {
+			font-family: 'Helvatica', 'Arial', serif;
+			color: #333;
+			background-color: #ccc;
+			margin: 1em 10%;
+		}
+		h1 {
+			color:#333;
+			background-color: transparent;
+		}
+		a {
+			color:#c60;
+			background-color: transparent;
+			font-weight: bold;
+			text-decoration: none;
+		}
+		ul {
+			padding: 0;
+		}
+		li {
+			float: left;
+			padding: 1em;
+			list-style: none;
+		}
+		img {
+			display: block;
+			clear:both;
+		}
+	</style>
+</head>
+<body>
+	<h1>Snapshots</h1>
+	<ul>
+		<li>
+			<a href="img/640.jpg" title="A DI1"  onclick="showPic(this); return false;" >风景1</a>
+		</li>
+		<li>
+			<a href="img/6401.jpg" title="A DI2" onclick="showPic(this); return false;">风景2</a>
+		</li>
+		<li>
+			<a href="img/6402.jpg" title="A DI3" onclick="showPic(this); return false;">风景3</a>
+		</li>
+		<li>
+			<a href="img/6403.jpg" title="A DI4" onclick="showPic(this); return false;">风景4</a>
+		</li>
+		<img src="img/replace.jpg" id="placeholder" alt="my image gallery">
+		<p id="description">Choose an image</p>
+	</ul>
+</body>
+<script type="text/javascript">
+
+	// window.onload = countBodyChildren;
+
+	function showPic(whichpic) {
+		var source = whichpic.getAttribute('href');
+		var text = whichpic.getAttribute('title');
+		var description = document.getElementById('description');
+		var placeholder = document.getElementById('placeholder');
+		placeholder.setAttribute('src', source);
+		description.firstChild.nodeValue = text;
+	}
+
+	function countBodyChildren() {
+		var body_element = document.getElementsByTagName('body')[0];
+		alert(body_element.childNodes.length);
+	}
+</script>
+</html>
